@@ -18,3 +18,12 @@ code {
   font-family: "Quicksand";
   color: #333;
 }
+form {
+  background: white;
+  padding: 1.5em;
+  border-radius: 1em;
+  margin: 1%
+  
+}
+
+

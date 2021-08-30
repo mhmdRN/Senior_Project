@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {  Button,Form,Input} from 'semantic-ui-react'
-import { useLocation} from 'react-router-dom'
+
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 const CREATE_DOCTOR={
@@ -19,7 +19,7 @@ const Doctors=()=>{
   
   const [create_doc,set_create_doc]=useState(CREATE_DOCTOR);
   
-  const Location=useLocation();
+ 
   
   useEffect(()=>{
     axios.get('http://localhost:4000')

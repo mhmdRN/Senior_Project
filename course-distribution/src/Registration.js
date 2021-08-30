@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Container, Form,Input ,Radio,Divider,Button,Select} from 'semantic-ui-react'
+import { Container, Form,Input ,Radio,Divider,Button} from 'semantic-ui-react'
 import { Helmet } from 'react-helmet';
 import axios from 'axios'
+import React from 'react';
 const REGISTRATION_INITIAL={
   Course_Code:"",
   DFile_number:"",
@@ -30,12 +31,12 @@ const Registration=()=>{
 
   useEffect(async ()=>{
     const data=await axios.get('http://localhost:4000/registration');
-    var crs=data.data.courses.map((d,i)=>({
+    const crs=data.data.courses.map((d,i)=>({
        key: d._id,
-       text: d.Course_code,
-       value: d.Course_Code
+       value: d.Course_Code,
+       text: d.Course_code
     }));
-    var drs=data.data.doctors.map((d,i)=>({
+    const drs=data.data.doctors.map((d,i)=>({
       key: d._id,
       value: d.File_Number,
       text:  d.File_Number
@@ -160,8 +161,10 @@ const Registration=()=>{
       </Form.Field>
       <Form.Field value={Reg.Lab} >
       <label>Lab</label>
-        <Radio name="Lab"
-         toggle onChange={handleInput} 
+        <Radio
+         name="Lab"
+         toggle
+         onChange={handleInput} 
          onClick={()=>{Reg.Lab=!Reg.Lab}}
          />
       </Form.Field>

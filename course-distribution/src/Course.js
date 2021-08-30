@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import {Icon,Checkbox,  Button,Form,Input} from 'semantic-ui-react'
+import {Checkbox,  Button,Form,Input} from 'semantic-ui-react'
 import axios from 'axios'
 const CREATE_COURSE={
     Course_code:'',
@@ -19,13 +19,15 @@ const Courses = () => {
     const [create_course,set_create_course]=useState(CREATE_COURSE);
     const handleInput=(e)=>{
         const{name,value}=e.target;
-        console.log(e);
+       
         set_create_course(prev=>({...prev,[name]:value}));
+        console.log(create_course);
     }
     const handleSubmit=async ()=>{
         await axios.post('http://localhost:4000/course',create_course);
 
     }
+    
     return (  
         <div >
         <Helmet>
@@ -89,35 +91,46 @@ const Courses = () => {
                 value={CREATE_COURSE.credits}
               >
                 <label>Credits</label>
-                <Input
-                required
-                type='number'
-                placeholder='credits'
+                
+                <input 
                 name="credits"
+                required 
+                type="number" 
+                min="0" max="30" 
+                placeholder="0"
                 onChange={handleInput} />
+                
+                
                 </Form.Field>
     
               <Form.Field 
                 value={CREATE_COURSE.Semester_Nb}
               >
                 <label>Semester Number</label>
-                <Input
-                required
-                placeholder='Semester Number'
-                name="Semester_Nb"
-                 onChange={handleInput}
-                />
+               
+
+                <select name="Semester_Nb" value={create_course.Semester_Nb} onChange={handleInput}>
+                  <option value="S1" >S1</option>
+                  <option value="S2" >S2</option>
+                  <option value="S3" >S3</option>
+                  <option value="S4" >S4</option>
+                  <option value="S5" >S5</option>
+                  <option value="S6" >S6</option>
+                  <option value="S7" >S7</option>
+                  <option value="S8" >S8</option>
+                  </select>
                 </Form.Field>
     
               <Form.Field
                 value={CREATE_COURSE.Course_Type}
-              >
-              <label>Course Type</label>
-              <Input
-                required
-                placeholder='Course Type'
                 name="Course_Type"
-                onChange={handleInput}/>
+              >
+              <label>Course Type</label>   
+          <select onChange={handleInput} name="Course_Type" value={create_course.Course_Type}>
+                <option value="Obligatory">Obligatory</option>
+                <option value="Elective">Elective</option>
+          </select>
+              
                 </Form.Field>
               </Form.Group>
               </div>
@@ -157,7 +170,7 @@ const Courses = () => {
                 </Form.Field>
                 </Form.Group>
             <Form.Field>
-            <Button color="red">Create</Button>
+             <Button color="red">Create</Button>
             </Form.Field>
             
           </Form>

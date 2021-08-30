@@ -21,12 +21,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
-// app.get('/',(req,res)=>{
-//     const data={
-//         name:"mhmd"
-//     }
-//     res.json(data);
-// })
 app.get('/registration',async (req,res)=>{
     const courses=await Course.find();
     const doctors=await Doctor.find();
@@ -47,14 +41,14 @@ app.post('/',(req,res)=>{
     Contract_Type
     })
     console.log(data)
-    // data.save()
-    // .then(res=>{
-    //     console.log("saved");
-    // })
-    // .catch(err=>{
-    //     console.log(err)
-    // })
-    // console.log(req.body)
+    data.save()
+    .then(res=>{
+        console.log("saved");
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+    console.log(req.body)
 })
 app.post('/course',(req,res)=>{
     const {Course_code,course_name,Total_Hours,Description,credits,available,Semester_Nb,Course_Type,Course_hours,Lab_hours,Exercise_hours}=req.body;
@@ -72,7 +66,7 @@ app.post('/course',(req,res)=>{
       Exercise_hours
     })
     console.log(data);
-    //data.save().then(res=>console.log("saved")).catch(err=>console.log(err));
+    data.save().then(res=>console.log("saved")).catch(err=>console.log(err));
 })
 app.post('/registration',async(req,res)=>{
     console.log(req.body)
@@ -92,11 +86,11 @@ app.post('/registration',async(req,res)=>{
         Section_ID
     });
     console.log(doc)
-    // doc.save()
-    // .then(()=>{
-    //     console.log("doc saved")
-    // })
-    // .catch(err=>{
-    //     console.log(err)
-    // })  
+    doc.save()
+    .then(()=>{
+        console.log("doc saved")
+    })
+    .catch(err=>{
+        console.log(err)
+    })  
 })
